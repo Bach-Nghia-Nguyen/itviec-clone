@@ -1,41 +1,8 @@
-import React, { useState } from "react";
-import { Link, Route, Redirect } from "react-router-dom";
+import React from "react";
 
 import LoginForm from "../components/LoginForm";
 
-import JobsList from "../pages/JobsList";
-
-const Login = () => {
-  const admin = {
-    name: "Nghia",
-    email: "nghia@gmail.com",
-    password: "061296",
-  };
-
-  const [user, setUser] = useState({ email: "", name: "" });
-  const [error, setError] = useState("");
-
-  const Login = (details) => {
-    console.log(details);
-
-    if (details.email === admin.email && details.password == admin.password) {
-      console.log("Log in successfully");
-
-      setUser({
-        name: admin.name,
-        email: admin.email,
-      });
-      setError("");
-    } else {
-      setError("Wrong username or password!");
-    }
-  };
-
-  const Logout = () => {
-    console.log("Log out");
-    setUser({ name: "", email: "" });
-  };
-
+const Login = ({ user, login, logout, error }) => {
   return (
     <div className="login-container">
       {user.email !== "" ? (
@@ -43,10 +10,10 @@ const Login = () => {
           <h2>
             Welcome, <span>{user.name}</span>
           </h2>
-          <button onClick={Logout}>Log Out</button>
+          <button onClick={logout}>Log Out</button>
         </div>
       ) : (
-        <LoginForm Login={Login} error={error} />
+        <LoginForm login={login} error={error} />
       )}
     </div>
   );

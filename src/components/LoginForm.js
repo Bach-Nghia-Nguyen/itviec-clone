@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-const LoginForm = ({ Login, error }) => {
+const LoginForm = ({ login, error }) => {
   const [details, setDetails] = useState({ name: "", email: "", password: "" });
 
   const submitHandler = (e) => {
     e.preventDefault();
-    Login(details);
+    login(details);
   };
   return (
     <form onSubmit={submitHandler}>
